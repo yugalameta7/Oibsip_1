@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        .heading {
+            background-color: black;
+            text-align: center;
+            color: aliceblue;
+        }
+
+        img.background_blur {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            -webkit-filter: blur(5px);
+        }
+
+        @media (min-width: 200px) {
+            .container {
+
+                max-width: 500px;
+                max-height: 1500px;
+                margin-top: 200px;
+
+
+            }
+
+            .container .btn btn-outline-dark {
+                text-align: centers;
+                background-color: red;
+            }
+
+
+
+        }
+
+        .btn-outline-dark {
+            width: 18%;
+            font-weight: bold;
+            border-radius: 90px;
+            margin: 4px !important;
+            color: #FFF;
+            background-color: #212529;
+        }
+
+        .btn-outline-warning {
+            width: 18%;
+            font-weight: bold;
+            border-radius: 90px;
+        }
+
+        .btn:hover {
+            background-color: #ffc107;
+            color: var(--bs-btn-hover-bg);
+            border-color: var(--bs-btn-hover-bg);
+        }
+
+        .btn-success-hover:hover {
+            background-color: #1a9149;
+            color: #FFF;
+            border-color: var(--bs-btn-hover-bg);
+        }
+        .data-result {
+        border: 1px solid #ddd;
+        border-radius: 1px;
+        height: 20%!important;
+        padding-right: 15px;
+        padding-top: 10px;
+        text-align: right;
+        margin-right: 6px;
+        font-size: 2.5rem;
+        overflow-x: auto;
+        transition: all .2s ease-in-out;
+        }
+    </style>
+    <script>
+        //Clear All enter value
+        function clearAll(){
+            $("#rec").val('');//clear value which is available in output textbox(rec)
+        }
+        //Input value calcultion
+        function inputVal(val){
+            var Newinput  = val;//geting value of clicked button
+            var currentVal = $("#rec").val();//storing current value of output textbox into currentVal
+            currentVal += Newinput;//concating new value with old value
+            $("#rec").val(currentVal);//showing new input value added with old values
+        }
+        //get result value of the calulations
+        function getResult() 
+         { 
+             var preVal = $("#rec").val();//storing current value of output textbox into preVal
+             var finalVal = eval(preVal); //eval executes an arguments
+             $("#rec").val(finalVal);//final output showing to the output box
+         } 
+    </script>
+
+</head>
+
+<body>
+    <div class="heading">
+        <h1>
+            Calculator
+        </h1>
+    </div>
+    <div>
+        <img class="background_blur" src="image/5.jpg" class="img-fluid" alt="...">
+    </div>
+
+    <div class="container" style="border: 2px solid black">
+
+        <div class="form-group">
+            <!-- <input id="text_value" style="width: 415px; height: 90px;  border: 20cm; "
+                type="text" class="form-control"> -->
+            <div class="data-result" id="data-result"><input type="text" id="rec" value="" style="width: 449px;text-align-last: end;
+            " readonly/></div>
+        </div>
+
+        <div>
+
+            <!-- <button  type="button" class="btn btn-outline-dark">√</button>
+                <button  type="button" class="btn btn-outline-dark">%</button>
+                <button  type="button" class="btn btn-outline-dark">x2</button>
+                <button  type="button" class="btn btn-outline-dark">1/x</button> -->
+                <button type="button" class="btn btn-outline-dark" onclick="clearAll()">C</button>
+                <button type="button" class="btn btn-outline-dark" onclick="inputVal('-+')">-+</button>
+                <button type="button" class="btn btn-outline-dark" onclick="inputVal('%')">%</button>
+                <button type="button" class="btn btn-outline-dark" onclick="inputVal('/')">÷</button>
+                <button type="button" class="btn btn-outline-dark" onclick="inputVal('8')">8</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('7')">7</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('9')">9</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('*')">*</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('4')">4</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('5')">5</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('6')">6</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('-')">-</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('1')">1</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('2')">2</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('3')">3</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('+')">+</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('.')">.</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('0')">0</button>
+            <button type="button" class="btn btn-outline-dark" onclick="inputVal('1')">DEL</button>
+            <!-- <button  type="button" style="width: 21%; font-weight: bold;  "  class="btn btn-outline-dark">=</button> -->
+            <!-- <button type="button" class="btn btn-warning">=</button> -->
+            <button type="button" class="btn btn-outline-dark btn-success-hover " onclick="getResult()">=</button>
+
+        </div>
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/jquery-3.7.0.js"
+  integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+  crossorigin="anonymous"></script>
+</body>
+
+</html>
